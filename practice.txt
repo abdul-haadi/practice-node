@@ -1,0 +1,45 @@
+  fs.readFile('response.json',(err, data) => {
+                if(err){
+                    throw err
+                }
+                const d = JSON.parse(data)
+                console.log("Data Reading");
+                console.log(d);
+                
+            } )
+
+            Supabase 
+            Database todo pw: admiin"2024
+
+            import puppeteer from 'puppeteer';
+
+const main = async () => {
+    const browser = await puppeteer.launch({
+        headless:false
+    });
+    const page = await browser.newPage();
+    await page.goto('https://www.nytimes.com/international/section/world/asia',{
+        timeout: 60000
+    })
+    await page.setViewport({width: 1280, height: 1024});
+    
+    const search = '#stream-panel > div > ol > li > div';
+    const elements = await page.$$(search)
+    // console.log(elements.length)
+    elements.map(async (element) => {
+        // const date = await element.$eval("div > span[data-testid=todays-date]" ,  e => e.textContent)
+        // const title = await element.$eval("article > a > h3", e => e.textContent)
+        const link = await element.$eval("article > a", e => e.getAttribute('href'))
+        // const desc = await element.$eval("article > p", e => e.textContent)
+        // const author = await element.$eval("article > div > p > span", e => e.textContent)
+        // const image = await element.$eval("article > div > figure > div > img", e => e.getAttribute('src'))
+        // const quality = image.replace("quality=75", "quality=100")
+        // const image = await element.$eval("article > div > figure > div > img", e => e.getAttribute('srcset'))
+        console.log({link})
+    })
+    
+}
+
+main();
+// const date = await element.$eval("h3", e => e.textContent) - title all
+// const date = await element.$eval("div > span[data-testid=todays-date]" ,  e => e.textContent) - date all
